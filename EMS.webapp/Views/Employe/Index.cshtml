@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EMS.webapp.Models.Employe>
+
+@{
+    ViewData["Title"] = "Index";
+    int idNo = 1;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreateOrEdit" asp-controller="Employe" class="btn btn-sm btn-success" mt-3>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model =>model.id)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td> @Html.DisplayFor(modelItem => idNo)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <a asp-action="CreateOrEdit"asp-controller="Employe" asp-route-id="@item.id" class="btn btn-sm btn-primary">Edit</a> |
+                    
+                <a asp-action="Details" asp-controller="Employe" asp-route-id="@item.id" class="btn btn-sm btn-success">Details</a> |
+
+                    <a asp-action="Delete" asp-controller="Employe" asp-route-id="@item.id" onclick="return confirm('Are you sure delete this item?')" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+           
+        </tr>
+            idNo++;
+}
+    </tbody>
+</table>
